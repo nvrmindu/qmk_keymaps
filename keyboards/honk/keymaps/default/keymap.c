@@ -57,7 +57,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //     ├────────┼────────┼────────┼────────┼────────┼────────┤ ├────────┤  ├────────┤ ├────────┼────────┼────────┼────────┼────────┼────────┤
         KC_GESC, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,      KC_N,       KC_N,      KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RBRC,
 //     └────────┴────────┼────────┼────────┼────────┼────────┤ ├────────┤  ├────────┤ ├────────┼────────┼────────┼────────┼────────┴────────┘
-                          KC_NO,   FN1,     FN2SPC,  KC_BSPC,   KC_K,       KC_K,      FN3ENT,  FN2BS,   FN1ESC,  KC_NO
+                          KC_NO,   KC_NO,   FN1,     FN2SPC,    KC_BSPC,    KC_NO,     FN3ENT,  FN2BS,   FN1ESC,   RESET
 //                       └────────┴────────┴────────┴────────┘ └────────┘  └────────┘ └────────┴────────┴────────┴────────┘
     ),
 
@@ -99,3 +99,42 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case QWERTY:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_QWERTY);
+      }
+      return false;
+      break;
+    case FN1:
+      if (record->event.pressed) {
+        layer_on(_FN1);
+        update_tri_layer(_FN1, _FN2, _FN3);
+      } else {
+        layer_off(_FN1);
+        update_tri_layer(_FN1, _FN2, _FN3);
+      }
+      return false;
+      break;
+    case FN2:
+      if (record->event.pressed) {
+        layer_on(_FN2);
+        update_tri_layer(_FN1, _FN2, _FN3);
+      } else {
+        layer_off(_FN2);
+        update_tri_layer(_FN1, _FN2, _FN3);
+      }
+      return false;
+      break;
+    case FN3:
+      if (record->event.pressed) {
+        layer_on(_FN3);
+      } else {
+        layer_off(_FN3);
+      }
+      return false;
+      break;
+  }
+  return true;
+}
