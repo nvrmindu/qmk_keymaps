@@ -34,3 +34,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 #define DEBOUNCE 5
+
+// vial support
+#define VIAL_KEYBOARD_UID {0x64, 0xD3, 0x52, 0xD6, 0x0A, 0xC3, 0x58, 0x0C}
