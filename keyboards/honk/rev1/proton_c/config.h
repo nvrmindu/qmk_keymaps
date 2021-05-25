@@ -18,5 +18,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "config_common.h"
 #define MATRIX_ROW_PINS { A2, A1, A0, B8 }
-#define MATRIX_COL_PINS { B13, B14, B15, B9, A9, A10, B7, B6, B5, B4, B3, B2, B1, B0 }
+#define MATRIX_COL_PINS { B0, B1, B2, B3, B4, B5, B6, B7, A10, A9, B9, B15, B14, B13 }
 
